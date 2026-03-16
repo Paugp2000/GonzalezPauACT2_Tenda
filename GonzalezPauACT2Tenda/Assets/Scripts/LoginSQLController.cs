@@ -30,8 +30,9 @@ public class LoginSQLController : MonoBehaviour
     [SerializeField] GameObject panelMostrarUsuarios;
     [SerializeField] TextMeshProUGUI textoMostrarUsuarios;
     [SerializeField] GameObject panelRegistrado;
+    public static int idUsuarioIntroducido;
     public bool loginCorrecto = false;
-
+    private float dineroInicial = 500;
     private void Start()
     {
 
@@ -144,11 +145,11 @@ public class LoginSQLController : MonoBehaviour
             panelErrorConPequeña.SetActive(true);
             return;
         }
-        AddUsuario(nombreUsuario.text, contraseña.text);
+        AddUsuario(nombreUsuario.text, contraseña.text, dineroInicial);
     }
-    public void AddUsuario(string nombre, string contraseña)
+    public void AddUsuario(string nombre, string contraseña, float dineroInicial)
     {
-        Usuario usuario = new Usuario { NombreUsuario = nombre, Contraseña = contraseña };
+        Usuario usuario = new Usuario { NombreUsuario = nombre, Contraseña = contraseña, DineroDisponible = dineroInicial };
         dbConnection.Insert(usuario);
         Debug.Log("Usuario : " + usuario.NombreUsuario + " añadidio");
         panelRegistrado.SetActive(true);
@@ -177,7 +178,8 @@ public class LoginSQLController : MonoBehaviour
         {
             if (usuario.NombreUsuario == nombreUsuario.text && usuario.Contraseña == contraseña.text)
             {
-                SceneManager.LoadScene("Entrada");
+                idUsuarioIntroducido = usuario.Id;
+                SceneManager.LoadScene("Tienda");
                 loginCorrecto = true;
             }
         }
