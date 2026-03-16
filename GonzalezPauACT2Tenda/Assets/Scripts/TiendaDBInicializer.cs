@@ -13,7 +13,7 @@ public class TiendaDBInicializer : MonoBehaviour
     private string _dbPath;
     private string _streamingPath;
     private SQLiteConnection dbConnection;
-    public string[] nombresFrutas = { "Manzana", "Naranja", "Piña", "Melocoton"};
+    public string[] nombresFrutas = { "Manzana", "Naranja", "Piña", "Melocoton" };
     public int[] preciosFrutas = { 30, 25, 50, 65 };
     private bool existeInventario = false;
 
@@ -26,7 +26,7 @@ public class TiendaDBInicializer : MonoBehaviour
     private void Start()
     {
         CargarDatabase();
-        CargarInventario(LoginSQLController.idUsuarioIntroducido);
+
     }
     public void CargarDatabase()
     {
@@ -86,14 +86,14 @@ public class TiendaDBInicializer : MonoBehaviour
             }
             else
             {
-               
+
             }
         }
         if (!existeInventario)
         {
             dbConnection.CreateTable<Inventario>();
             dbConnection.CreateTable<Objeto>();
-            
+
             for (int i = 0; i < nombresFrutas.Length; i++)
             {
                 AddFruta(nombresFrutas[i], preciosFrutas[i], 0);
@@ -105,26 +105,28 @@ public class TiendaDBInicializer : MonoBehaviour
         {
             CargarInventario(LoginSQLController.idUsuarioIntroducido);
         }
-        
+
     }
     public void AddInventario()
     {
-        Inventario inventario = new Inventario { IdUsuario = LoginSQLController.idUsuarioIntroducido, ObjetoList = returnListFrutas() };
-        dbConnection.Insert(inventario);    
+        Inventario inventario = new Inventario { IdUsuario = LoginSQLController.idUsuarioIntroducido};
+        dbConnection.Insert(inventario);
     }
-    public List<Objeto> returnListFrutas()
+    public Objeto[] returnListFrutas()
     {
-        List<Objeto> listaAAñadir = new List<Objeto>();
+        int contador = 0;
+        Objeto[] listaAAñadir = new Objeto[4];
         var frutas = dbConnection.Table<Objeto>();
         foreach (Objeto objeto in frutas)
         {
-            listaAAñadir.Add(objeto);
+            listaAAñadir[contador] = objeto;
+            contador++;
         }
         return listaAAñadir;
     }
     public void AddFruta(string nombreFruta, int precio, int cantidad)
     {
-        Objeto objeto = new Objeto {NombreProducto = nombreFruta, PrecioProducto = precio, cantidadDeProducto = cantidad};
+        Objeto objeto = new Objeto { NombreProducto = nombreFruta, PrecioProducto = precio, cantidadDeProducto = cantidad };
         dbConnection.Insert(objeto);
     }
     public void CargarInventario(int idInventario)
@@ -134,7 +136,27 @@ public class TiendaDBInicializer : MonoBehaviour
         {
             if (inventario.IdUsuario == idInventario)
             {
+                //Debug.Log(inventario.ObjetoList);
+                //foreach (Objeto fruta in inventario.ObjetoList)
+                //{
+                //    if (fruta.NombreProducto == "Manzana")
+                //    {
+                //         numManzanas.text = fruta.cantidadDeProducto.ToString();    
+                //    }
+                //    else if (fruta.NombreProducto == "Naranja")
+                //    {
+                //        numNaranjas.text = fruta.cantidadDeProducto.ToString();
 
+                //    }
+                //    else if(fruta.NombreProducto == "Piña")
+                //    {
+                //        numPiñas.text = fruta.cantidadDeProducto.ToString();
+                //    }
+                //    else if(fruta.NombreProducto == "Melocoton")
+                //    {
+                //        numMelocotones.text = fruta.cantidadDeProducto.ToString();
+                //    }
+                //}
             }
         }
     }
