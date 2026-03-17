@@ -7,6 +7,7 @@ using UnityEngine;
 using SQLite4Unity3d;
 using UnityEngine.UIElements;
 using TMPro;
+using System.Data;
 
 public class TiendaDBInicializer : MonoBehaviour
 {
@@ -100,7 +101,7 @@ public class TiendaDBInicializer : MonoBehaviour
             dbConnection.CreateCommand("CREATE TABLE IF NOT EXISTS InventarioObjeto (" +
                           "idInventario INT," +
                           "idObjeto INT," +
-                          "cantidad INTEGER, " +
+                          "cantidad INT, " +
                           "PRIMARY KEY (idInventario, idObjeto)," +
                           "FOREIGN KEY (idInventario) REFERENCES Inventario(IdInventario)," +
                           "FOREIGN KEY (idObjeto) REFERENCES Objeto(idObjeto));").ExecuteNonQuery();    
@@ -121,7 +122,7 @@ public class TiendaDBInicializer : MonoBehaviour
     }
     public void AddInventario()
     {
-        Inventario inventario = new Inventario { IdUsuario = LoginSQLController.idUsuarioIntroducido};
+        Inventario inventario = new Inventario { IdInventario = LoginSQLController.idUsuarioIntroducido, IdUsuario = LoginSQLController.idUsuarioIntroducido};
         dbConnection.Insert(inventario);
     }
     public void AddFruta(string nombreFruta, int precio)
@@ -129,7 +130,7 @@ public class TiendaDBInicializer : MonoBehaviour
         Objeto objeto = new Objeto { NombreProducto = nombreFruta, PrecioProducto = precio};
         dbConnection.Insert(objeto);
         dbConnection.CreateCommand("INSERT INTO InventarioObjeto (idInventario, idObjeto, cantidad) VALUES (" + LoginSQLController.idUsuarioIntroducido +
-        ", "+ objeto.idObjeto + ", " + 0 + ")").ExecuteNonQuery();
+        ", "+ objeto.idObjeto + ", " + 0 + ");").ExecuteNonQuery();
     }
     public void CargarInventario(int idInventario)
     {
@@ -138,8 +139,25 @@ public class TiendaDBInicializer : MonoBehaviour
         {
             if (inventario.IdUsuario == idInventario)
             {
-                comandoCantidadManzanas.CommandText = ("SELECT cantidad ");
-                
+                comandoCantidadManzanas.CommandText = ("SELECT cantidad FROM InventarioObjeto, Objeto WHERE InventarioObjeto.idObjeto = Objeto.idObjeto AND idObjeto = 1 AND idInventario = "+
+                    idInventario+");");
+                int numManzanasNum = comandoCantidadManzanas.ExecuteScalar<int>();
+                numManzanas.text = numManzanasNum.ToString();
+
+                comandoCantidadNaranjas.CommandText = ("SELECT cantidad FROM InventarioObjeto, Objeto WHERE InventarioObjeto.idObjeto = Objeto.idObjeto AND idObjeto = 2 AND idInventario = "+
+                    idInventario+");");
+                int numNaranjasNum = comandoCantidadNaranjas.ExecuteScalar<int>();
+                numNaranjas.text = numNaranjasNum.ToString();
+
+                comandoCantidadPiñas.CommandText = ("SELECT cantidad FROM InventarioObjeto, Objeto WHERE InventarioObjeto.idObjeto = Objeto.idObjeto AND idObjeto = 3 AND idInventario = " +
+                    idInventario + ");");
+                int numPiñasNum = comandoCantidadPiñas.ExecuteScalar<int>();
+                numPiñas.text = numPiñasNum.ToString();
+
+                comandoCantidadMelocotones.CommandText = ("SELECT cantidad FROM InventarioObjeto, Objeto WHERE InventarioObjeto.idObjeto = Objeto.idObjeto AND idObjeto = 4 AND idInventario = " +
+                    idInventario + ");");
+                int numMelocotonesNum = comandoCantidadMelocotones.ExecuteScalar<int>();
+                numMelocotones.text = numMelocotonesNum.ToString();
             }
         }
     }
