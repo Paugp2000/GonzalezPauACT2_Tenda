@@ -104,7 +104,9 @@ public class LoginSQLController : MonoBehaviour
             Directory.CreateDirectory(CommonDB.dbFolderPath);
 
         }
-        File.Create(Application.streamingAssetsPath + "/MyDatabase.sqlite");
+
+        if (!File.Exists(Application.streamingAssetsPath + "/MyDatabase.sqlite"))
+            File.Create(Application.streamingAssetsPath + "/MyDatabase.sqlite");
     }
 
     public void CreateDatabaseIfNecessary()

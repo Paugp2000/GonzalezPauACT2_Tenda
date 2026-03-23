@@ -420,7 +420,7 @@ GameObject:
   - component: {fileID: 137646931}
   - component: {fileID: 137646930}
   m_Layer: 5
-  m_Name: 'Text (TMP) '
+  m_Name: 'DineroText (TMP) '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3254,6 +3254,10 @@ MonoBehaviour:
   numNaranjas: {fileID: 193352875}
   "numPi\xF1as": {fileID: 1384828282}
   numMelocotones: {fileID: 1192765247}
+  numDinero: {fileID: 137646930}
+  panelSeleccionCantidad: {fileID: 979455051}
+  panelConfirmacionCompra: {fileID: 0}
+  cantidadDeseada: {fileID: 0}
 --- !u!1 &1139793448
 GameObject:
   m_ObjectHideFlags: 0
