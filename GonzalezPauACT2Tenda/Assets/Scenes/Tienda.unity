@@ -1102,7 +1102,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 251304639}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1049331209}
+        m_TargetAssemblyTypeName: TiendaDBInicializer, Assembly-CSharp
+        m_MethodName: AccederAElegirCantidadProducto
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &251304639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1576,7 +1588,7 @@ GameObject:
   - component: {fileID: 595569378}
   - component: {fileID: 595569377}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: TipoDeProducto
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1848,7 +1860,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 640207778}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1049331209}
+        m_TargetAssemblyTypeName: TiendaDBInicializer, Assembly-CSharp
+        m_MethodName: AccederAElegirCantidadProducto
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &640207778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1969,7 +1993,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 688834861}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1049331209}
+        m_TargetAssemblyTypeName: TiendaDBInicializer, Assembly-CSharp
+        m_MethodName: SeguirConCompra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &688834861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3250,14 +3286,21 @@ MonoBehaviour:
   - "Pi\xF1a"
   - Melocoton
   preciosFrutas: 1e000000190000003200000041000000
+  frutaSeleccionadaActual: 0
+  precioDeFrutaSeleccionada: 0
+  cantidadDeFrutaSeleccionada: 0
+  precioAPagarNum: 0
+  idInventarioActual: 0
   numManzanas: {fileID: 67107529}
   numNaranjas: {fileID: 193352875}
   "numPi\xF1as": {fileID: 1384828282}
   numMelocotones: {fileID: 1192765247}
   numDinero: {fileID: 137646930}
+  tipoDeProducto: {fileID: 595569377}
+  precioAPagar: {fileID: 296861563}
   panelSeleccionCantidad: {fileID: 979455051}
-  panelConfirmacionCompra: {fileID: 0}
-  cantidadDeseada: {fileID: 0}
+  panelConfirmacionCompra: {fileID: 2038271262}
+  cantidadDeseada: {fileID: 891753785}
 --- !u!1 &1139793448
 GameObject:
   m_ObjectHideFlags: 0
@@ -3340,7 +3383,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1139793451}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1049331209}
+        m_TargetAssemblyTypeName: TiendaDBInicializer, Assembly-CSharp
+        m_MethodName: AccederAElegirCantidadProducto
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1139793451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3729,7 +3784,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1465083725}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1049331209}
+        m_TargetAssemblyTypeName: TiendaDBInicializer, Assembly-CSharp
+        m_MethodName: AccederAElegirCantidadProducto
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1465083725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4247,7 +4314,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1835278762}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1049331209}
+        m_TargetAssemblyTypeName: TiendaDBInicializer, Assembly-CSharp
+        m_MethodName: RealizarCompra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1835278762
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -109,9 +109,17 @@ public class LoginSQLController : MonoBehaviour
             File.Create(Application.streamingAssetsPath + "/MyDatabase.sqlite");
     }
 
+    void AddNotNegCheckToMoneyCol(SQLiteConnection sQLiteConnection)
+    {
+        SQLiteCommand cmd = dbConnection.CreateCommand("ALTER TABLE Usuario ADD CONSTRAINT chk_dinero_disponible CHECK (DineroDisponible > 0);");
+        cmd.ExecuteNonQuery();
+    }
+
     public void CreateDatabaseIfNecessary()
     {
         dbConnection.CreateTable<Usuario>();
+        AddNotNegCheckToMoneyCol(dbConnection);
+        //Lanzar una query update a webo para añadir 
     }
     public void PulsarBotonDelete()
     {

@@ -10,6 +10,7 @@ public class Usuario
     [PrimaryKey, AutoIncrement] public int Id { get; set; }
     public string NombreUsuario { get; set; }
     public string Contraseña { get; set; }
+    
     public float DineroDisponible { get; set; } 
 
     public override string ToString()

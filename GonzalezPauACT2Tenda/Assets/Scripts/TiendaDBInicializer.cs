@@ -235,22 +235,36 @@ public class TiendaDBInicializer : MonoBehaviour
     {
         try
         {
-             dbConnection.BeginTransaction();
+            //
+
+            dbConnection.BeginTransaction(); 
              SQLiteCommand comandoAñadirCantidad = new SQLiteCommand(dbConnection);
             comandoAñadirCantidad.CommandText = "UPDATE InventarioObjeto SET cantidad = cantidad + " + cantidadDeFrutaSeleccionada +
                " WHERE  (InventarioObjeto.idObjeto = " + frutaSeleccionadaActual + " AND idInventario = " + idInventarioActual + ");";
             comandoAñadirCantidad.ExecuteNonQuery();
+
+            dbConnection.SaveTransactionPoint();
             SQLiteCommand comandoPagarDinero = new SQLiteCommand(dbConnection); 
             comandoPagarDinero.CommandText = "UPDATE Usuario SET DineroDisponible = DineroDisponible - " + precioAPagarNum + " WHERE (Usuario.Id = "+ idInventarioActual + ");";
-            transactionCompra.Commit();
-
+            comandoPagarDinero.ExecuteNonQuery();
+            //transactionCompra.Commit();
+            dbConnection.Commit();
 
 
         }
         catch (Exception ex) 
         {
-            transactionCompra.Rollback();
+
+            dbConnection.Rollback();
+            //transactionCompra.Rollback();
             Debug.LogError("Transaccion Fallida");
+        }
+        finally
+        {
+            panelConfirmacionCompra.SetActive(false);
+            comandoDevolverDinero = new SQLiteCommand(dbConnection);
+            comandoDevolverDinero.CommandText = "SELECT DineroDisponible FROM Usuario WHERE (Usuario.Id = " + idInventarioActual + ");";
+            numDinero.text = comandoDevolverDinero.ExecuteScalar<int>().ToString();
         }
     }
 }
